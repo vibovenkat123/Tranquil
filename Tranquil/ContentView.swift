@@ -9,52 +9,28 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-    
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        TabView {
+            HabitsView()
+                .tabItem {
+                    Label("Habits", systemImage: "leaf.fill")
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+            JournalView()
+                .modelContainer(for: Entry.self)
+                .tabItem {
+                    Label("Journal", systemImage: "book.closed.fill")
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+            BreatheView()
+                .tabItem {
+                    Label("Breathe", systemImage: "cloud.fill")
                 }
-            }
-            Text("Select an item")
         }
-    }
+        .onAppear() {
+            let appearance = UITabBarAppearance()
+            appearance.shadowColor = UIColor.lightGray
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+            UITabBar.appearance().scrollEdgeAppearance = appearance
         }
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
-}
