@@ -28,9 +28,22 @@ struct JournalView: View {
                         NavigationLink {
                             VStack {
                                 Text("\(dateFormatter.string(from: entry.date))")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                Spacer()
+                                    .frame(height: 50)
                                 Text(entry.content)
-                                Text(entry.adjective)
+                                Spacer()
+                                    .frame(height: 50)
+                                Text("\(entry.adjective.uppercased())")
+                                    .font(.title3)
+                                    .padding()
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(.primary, lineWidth: 2)
+                                    )
                             }
+                            .padding()
                         } label: {
                             Text("\(dateFormatter.string(from: entry.date))")
                             Text("Adjective: \(entry.adjective)")
@@ -48,7 +61,8 @@ struct JournalView: View {
             VStack {
                 TextField(
                     "Write about your day",
-                    text: $content
+                    text: $content,
+                    axis: .vertical
                 )
                 .focused($contentFieldIsFocused)
                 .padding()
@@ -56,6 +70,7 @@ struct JournalView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(.secondary, lineWidth: 2)
                 )
+                
                 TextField(
                     "Write one adjective that describes your day",
                     text: $adjective
@@ -68,6 +83,9 @@ struct JournalView: View {
                 )
                 
                 Button("Submit Entry") {
+                    contentFieldIsFocused = false
+                    adjectiveFieldIsFocused = false
+                    adjective = adjective.trimmingCharacters(in: .whitespacesAndNewlines)
                     if (content.count == 0 || adjective.count == 0) {
                         invalidEntryFields = true
                         return
@@ -79,6 +97,8 @@ struct JournalView: View {
                     if !addEntry(content: content, adj: adjective) {
                         dateAlreadyThere = true
                     }
+                    adjective = ""
+                    content = ""
                 }
                 .alert("Make sure both the fields are filled out", isPresented: $invalidEntryFields) {
                     Button("OK", role: .cancel) { }
