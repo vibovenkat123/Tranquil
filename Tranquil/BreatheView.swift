@@ -42,7 +42,7 @@ struct BreatheView: View {
                 .foregroundStyle(.accent)
                 .padding()
                 .overlay(
-                    RoundedRectangle(cornerRadius: 10)
+                    RoundedRectangle(cornerRadius: Globals().cornerRadius)
                         .stroke(.green, lineWidth: 2)
                 )
             }
