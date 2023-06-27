@@ -34,7 +34,12 @@ struct Background<Content: View>: View {
 struct JournalView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \.date) var entries: [Entry]
-    @State private var content = ""
+    @State private var content = """
+    Write about your day
+    
+    
+    So on
+    """
     @State private var adjective = ""
     @FocusState private var contentFieldIsFocused: Bool
     @FocusState private var adjectiveFieldIsFocused: Bool
@@ -46,93 +51,89 @@ struct JournalView: View {
     var body: some View {
         Background {
             VStack {
+                Text("Journal")
+                    .font(CreateFont(.title))
+                    .fontWeight(.bold)
                 if let entry = entries.last {
                     if Calendar.current.isDateInToday(entry.date) {
-                        VStack {
-                            Text("Entry:")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding(.bottom)
-                            
-                            Text("\(dateFormatter.string(from: entry.date))")
-                                .font(.headline)
-                                .padding(.bottom)
-                                .textSelection(.enabled)
-                            
-                            Text("""
-                                \(entry.content)
-                                """)
-                            .font(.body)
-                            .padding(.bottom)
-                            .textSelection(.enabled)
-                            
-                            Text("\(entry.adjective)")
-                                .font(.subheadline)
-                                .foregroundStyle(Color(Globals().accentColor))
-                                .padding()
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Globals().accentColor, lineWidth: 2)
-                                )
-                                .textSelection(.enabled)
-                                .padding(.bottom)
-                            
-                            Button("Delete", role: .destructive) {
-                                isDeleting = true
+                        VStack() {
+                            HStack {
+                              Spacer()
                             }
-                            .foregroundStyle(Color(Globals().offPrimary))
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: Globals().cornerRadius)
-                                    .fill(.red)
-                            )
+                            VStack {
+                                HStack {
+                                  Spacer()
+                                }
+                                Text("\(dateFormatter.string(from: entry.date))")
+                                    .font(CreateFont(.headline))
+                                    .padding(.bottom)
+                                    .textSelection(.enabled)
+                                ScrollView {
+                                    Text("""
+                                    \(entry.content)
+                                    """)
+                                    .font(Globals().font)
+                                    .padding(.bottom)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .lineLimit(5)
+                                }
+                                .frame(height: 5 * 50)
+                                Text("\(entry.adjective)")
+                                    .font(CreateFont(.subheadline))
+                                    .padding()
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Globals().primaryColor, lineWidth: 2)
+                                    )
+                                    .textSelection(.enabled)
+                            }
+                            .padding(.bottom)
                             .overlay(
                                 RoundedRectangle(cornerRadius: Globals().cornerRadius)
-                                    .stroke(.red)
+                                    .stroke(Globals().primaryColor, lineWidth: 2)
                             )
-                            .confirmationDialog("Are you sure?",
-                                                isPresented: $isDeleting) {
-                                Button("Delete entry?", role: .destructive) {
-                                    context.delete(entry)
+                            if Calendar.current.isDateInToday(entry.date) {
+                                Button("Delete", role: .destructive) {
+                                    isDeleting = true
                                 }
-                            } message: {
-                                Text("You cannot undo this action")
+                                .foregroundStyle(Color(Globals().offPrimary))
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: Globals().cornerRadius)
+                                        .fill(Globals().primaryColor)
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: Globals().cornerRadius)
+                                        .stroke(Globals().primaryColor)
+                                )
+                                .confirmationDialog("Are you sure?",
+                                                    isPresented: $isDeleting) {
+                                    Button("Delete entry?", role: .destructive) {
+                                        context.delete(entry)
+                                    }
+                                } message: {
+                                    Text("You cannot undo this action")
+                                }
                             }
                         }
-                    } else {
-                        VStack {
-                            Text("Entry:")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding(.bottom)
-                            
-                            Text("Date: \(dateFormatter.string(from: entry.date))")
-                                .font(.headline)
-                                .padding(.bottom)
-                            
-                            Text("Content: \(entry.content)")
-                                .font(.body)
-                                .padding(.bottom)
-                            
-                            Text("Adjective: \(entry.adjective)")
-                                .font(.body)
-                        }
+                        .padding()
                     }
                 } else {
                     Text("No entries yet!")
-                        .font(.largeTitle)
+                        .font(CreateFont(.headline))
                         .fontWeight(.bold)
                         .padding(.bottom)
                 }
                 if entries.count == 0 || !Calendar.current.isDateInToday(entries.last!.date) {
                     VStack {
-                        TextField(
-                            "Write about your day",
-                            text: $content,
-                            axis: .vertical
+                        TextEditor(
+                            text: $content
                         )
+                        .frame(height: 80)
                         .focused($contentFieldIsFocused)
                         .padding()
+                        .scrollContentBackground(.hidden)
+                        .background(Color(Globals().offPrimary))
                         .overlay(
                             RoundedRectangle(cornerRadius: Globals().cornerRadius)
                                 .stroke(.secondary, lineWidth: 2)
@@ -140,8 +141,10 @@ struct JournalView: View {
                         .padding(.bottom)
                         
                         TextField(
-                            "Write one adjective that describes your day",
-                            text: $adjective
+                            "",
+                            text: $adjective,
+                            prompt: Text("Write one adjective that describes your day")
+                                .font(CreateFont(.callout))
                         )
                         .focused($adjectiveFieldIsFocused)
                         .padding()
@@ -155,6 +158,7 @@ struct JournalView: View {
                             contentFieldIsFocused = false
                             adjectiveFieldIsFocused = false
                             adjective = adjective.trimmingCharacters(in: .whitespacesAndNewlines)
+                            content = content.trimmingCharacters(in: .whitespacesAndNewlines)
                             if (content.count == 0 || adjective.count == 0) {
                                 invalidEntryFields = true
                                 return
@@ -179,7 +183,8 @@ struct JournalView: View {
                         .alert("Your adjective is either too long (greater than 20 letters) or is not one word", isPresented: $adjTooLong) {
                             Button("OK", role: .cancel) { }
                         }
-                        .font(.callout)
+                        .font(CreateFont(.body))
+                        .fontWeight(.bold)
                         .foregroundStyle(Color(Globals().offPrimary))
                         .padding()
                         .background(

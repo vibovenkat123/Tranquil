@@ -7,10 +7,11 @@
 
 import SwiftUI
 import SwiftData
-
 @main
 struct TranquilApp: App {
-
+    init() {
+        // Set the global font to Avenir Next
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()

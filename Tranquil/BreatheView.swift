@@ -38,12 +38,12 @@ struct BreatheView: View {
                 Button("Start Breathing") {
                     started = true
                 }
-                .font(.title2)
-                .foregroundStyle(.accent)
+                .font(CreateFont(.title2))
+                .foregroundStyle(Globals().accentColor)
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: Globals().cornerRadius)
-                        .stroke(.green, lineWidth: 2)
+                        .stroke(Globals().accentColor, lineWidth: 2)
                 )
             }
         }
@@ -65,7 +65,7 @@ struct BreathingView: View {
         VStack {
             VStack {
                 Text(text)
-                    .font(.largeTitle)
+                    .font(CreateFont(.largeTitle))
                     .onReceive(timer, perform: { _ in
                         if let newBreatheInfo = breatheInfos[time] {
                             withAnimation(baseAnimation) {
