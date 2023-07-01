@@ -4,12 +4,9 @@ import Header from "../components/Header";
 import { Button } from "@/components/ui/button";
 import JournalEntry from "@/app/components/Journal/Entry";
 import { ADJECTIVE, Entry } from "../lib/journal/types";
-import {
-  getEntries,
-  validateEntry,
-  newEntry,
-} from "../lib/journal/helpers";
+import { getEntries, validateEntry, newEntry } from "../lib/journal/helpers";
 import PreviewCard from "../components/Journal/PreviewCard";
+import { Home } from "lucide-react";
 
 export default function Journal(): React.ReactElement {
   const [entries, setEntries] = useState<Entry[]>([]);
@@ -19,7 +16,12 @@ export default function Journal(): React.ReactElement {
   }, []);
   const cards: React.ReactElement[] = entries.map((entry) => {
     return (
-      <PreviewCard key={entry.date.getTime()} entry={entry} setCurrentEntry={setCurrentEntry} />
+      <PreviewCard
+        setEntries={setEntries}
+        key={entry.date.getTime()}
+        entry={entry}
+        setCurrentEntry={setCurrentEntry}
+      />
     );
   });
   return (
@@ -27,6 +29,15 @@ export default function Journal(): React.ReactElement {
       <Header />
       <div className="w-full flex h-auto overflow-auto">
         <div className="w-1/5 border-r-2 border-border h-screen p-4">
+          <Button
+            className="w-full mt-5 flex-col gap-2 p-8"
+            variant="outline"
+            onClick={() => {
+              setCurrentEntry(null);
+            }}
+          >
+            <h2><Home /></h2>
+          </Button>
           {cards}
         </div>
         <div className="w-4/5 h-screen p-4">
@@ -45,7 +56,7 @@ export default function Journal(): React.ReactElement {
           >
             add
           </Button>
-          <JournalEntry entry={currentEntry} setEntries={setEntries}/>
+          <JournalEntry entry={currentEntry} setEntries={setEntries} />
         </div>
       </div>
     </main>

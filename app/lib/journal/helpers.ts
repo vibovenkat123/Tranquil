@@ -65,3 +65,18 @@ export function spliceContent(content: string): string {
   }
   return content;
 }
+
+export function deleteEntry(date: Date): void {
+  const entries = getEntries();
+  const index = entries.findIndex(
+    (e) =>
+      e.date.getDate === date.getDate &&
+      e.date.getMonth === date.getMonth &&
+      e.date.getFullYear === date.getFullYear
+  );
+  if (index === -1) {
+    return;
+  }
+  entries.splice(index, 1);
+  localStorage.setItem("entries", JSON.stringify(entries));
+}

@@ -8,7 +8,8 @@ export const ADJECTIVE = {
   UNPLEASANT: "Unpleasant",
   VERY_UNPLEASANT: "Very Unpleasant",
 } as const;
-
+export const ALLOWED_ADJECTIVE = z.nativeEnum(ADJECTIVE);
+export type Adjective = z.infer<typeof ALLOWED_ADJECTIVE>;
 export const Entry = z.object({
   adjective: z.nativeEnum(ADJECTIVE),
   date: z.coerce.date(),
