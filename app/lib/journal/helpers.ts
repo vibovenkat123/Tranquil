@@ -16,10 +16,7 @@ export function validateEntry(
 export function updateEntry(entry: Entry): void {
   const entries = getEntries();
   const index = entries.findIndex(
-    (e) =>
-      e.date.getDate === entry.date.getDate &&
-      e.date.getMonth === entry.date.getMonth &&
-      e.date.getFullYear === entry.date.getFullYear
+    (e) => e.date.toDateString() === entry.date.toDateString()
   );
   if (index === -1) {
     return;
@@ -28,14 +25,15 @@ export function updateEntry(entry: Entry): void {
   localStorage.setItem("entries", JSON.stringify(entries));
 }
 
-export function newEntry(entry: Entry): void {
+export function newEntry(entry: Entry): Entry {
   const entries = getEntries();
   if (
     entries.some((o) => o.date.toDateString() === entry.date.toDateString())
   ) {
-    return;
+    return entries[0];
   }
   localStorage.setItem("entries", JSON.stringify([...entries, entry]));
+  return entry;
 }
 
 export function getEntries(): Entry[] {
@@ -66,10 +64,7 @@ export function spliceContent(content: string): string {
 export function deleteEntry(date: Date): void {
   const entries = getEntries();
   const index = entries.findIndex(
-    (e) =>
-      e.date.getDate === date.getDate &&
-      e.date.getMonth === date.getMonth &&
-      e.date.getFullYear === date.getFullYear
+    (e) => e.date.toDateString() === date.toDateString()
   );
   if (index === -1) {
     return;

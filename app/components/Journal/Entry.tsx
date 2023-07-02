@@ -46,85 +46,93 @@ export default function JournalEntry(props: Props): React.ReactElement {
     return <></>;
   }
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" w-2/3 space-y-6">
-        <FormField
-          control={form.control}
-          name="content"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Content</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder="Talk about your day"
-                  className="resize-none h-96 border-border border-2"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="adjective"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Mood</FormLabel>
-              <Select
-                onValueChange={(value) => {
-                  const adj = ALLOWED_ADJECTIVE.safeParse(value);
-                  if (adj.success) {
-                    field.onChange(adj.data);
-                  }
-                }}
-                defaultValue={field.value}
-              >
+    <div className="w-full h-full">
+      <h1 className="font-bold mb-2">
+        {props.entry.date.toLocaleDateString()}
+      </h1>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-full md:w-4/5 lg:w-2/3 space-y-6"
+        >
+          <FormField
+            control={form.control}
+            name="content"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Content</FormLabel>
                 <FormControl>
-                  <SelectTrigger className="border-border border-2">
-                    <SelectValue>{field.value}</SelectValue>
-                  </SelectTrigger>
+                  <Textarea
+                    placeholder="Talk about your day"
+                    className="resize-none h-96 border-border border-2"
+                    {...field}
+                  />
                 </FormControl>
-                <SelectContent>
-                  <SelectItem value={ADJECTIVE.VERY_PLEASANT}>
-                    <div className="flex w-full gap-3 items-center">
-                      <Laugh size={16} />
-                      {ADJECTIVE.VERY_PLEASANT}
-                    </div>
-                  </SelectItem>
-                  <SelectItem value={ADJECTIVE.PLEASANT}>
-                    <div className="flex w-full gap-3 items-center">
-                      <Smile size={16} />
-                      {ADJECTIVE.PLEASANT}
-                    </div>
-                  </SelectItem>
-                  <SelectItem value={ADJECTIVE.NEUTRAL}>
-                    <div className="flex w-full gap-3 items-center">
-                      <Meh size={16} />
-                      {ADJECTIVE.NEUTRAL}
-                    </div>
-                  </SelectItem>
-                  <SelectItem value={ADJECTIVE.UNPLEASANT}>
-                    <div className="flex w-full gap-3 items-center">
-                      <Frown size={16} />
-                      {ADJECTIVE.UNPLEASANT}
-                    </div>
-                  </SelectItem>
-                  <SelectItem value={ADJECTIVE.VERY_UNPLEASANT}>
-                    <div className="flex w-full gap-3 items-center">
-                      <Angry size={16} />
-                      {ADJECTIVE.VERY_UNPLEASANT}
-                    </div>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-              <FormDescription>How are you feeling today?</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Save</Button>
-      </form>
-    </Form>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="adjective"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Mood</FormLabel>
+                <Select
+                  onValueChange={(value) => {
+                    const adj = ALLOWED_ADJECTIVE.safeParse(value);
+                    if (adj.success) {
+                      field.onChange(adj.data);
+                    }
+                  }}
+                  defaultValue={field.value}
+                >
+                  <FormControl className="w-full md:w-2/3 lg:w-1/2">
+                    <SelectTrigger className="border-border border-2">
+                      <SelectValue>{field.value}</SelectValue>
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value={ADJECTIVE.VERY_PLEASANT}>
+                      <div className="flex w-full gap-3 items-center">
+                        <Laugh size={16} />
+                        {ADJECTIVE.VERY_PLEASANT}
+                      </div>
+                    </SelectItem>
+                    <SelectItem value={ADJECTIVE.PLEASANT}>
+                      <div className="flex w-full gap-3 items-center">
+                        <Smile size={16} />
+                        {ADJECTIVE.PLEASANT}
+                      </div>
+                    </SelectItem>
+                    <SelectItem value={ADJECTIVE.NEUTRAL}>
+                      <div className="flex w-full gap-3 items-center">
+                        <Meh size={16} />
+                        {ADJECTIVE.NEUTRAL}
+                      </div>
+                    </SelectItem>
+                    <SelectItem value={ADJECTIVE.UNPLEASANT}>
+                      <div className="flex w-full gap-3 items-center">
+                        <Frown size={16} />
+                        {ADJECTIVE.UNPLEASANT}
+                      </div>
+                    </SelectItem>
+                    <SelectItem value={ADJECTIVE.VERY_UNPLEASANT}>
+                      <div className="flex w-full gap-3 items-center">
+                        <Angry size={16} />
+                        {ADJECTIVE.VERY_UNPLEASANT}
+                      </div>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormDescription>How are you feeling today?</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit">Save</Button>
+        </form>
+      </Form>
+    </div>
   );
 }

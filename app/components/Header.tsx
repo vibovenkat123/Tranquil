@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import ModeToggle from "./ModeToggle";
-import { Menu, X } from "lucide-react";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -38,9 +36,7 @@ function HamburgerMenu(): React.ReactElement {
       <DropdownMenu>
         <DropdownMenuTrigger className="md:hidden" asChild>
           <Button variant="outline" className="md:hidden">
-            <Menu
-              className={`h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0`}
-            />
+            <p>Menu</p>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-8 flex flex-col gap-3">

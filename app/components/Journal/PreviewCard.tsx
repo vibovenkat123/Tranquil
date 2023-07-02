@@ -26,17 +26,19 @@ export default function PreviewCard(props: Props): React.ReactElement {
       <ContextMenuTrigger>
         <Button
           key={props.entry.date.getTime()}
-          className="w-full mt-5 flex-col gap-2 p-12 border-border border-2 select-none"
+          className="w-full mt-5 flex-col gap-2 p-8 md:p-10 lg:p-12 border-border border-2 select-none"
           variant="outline"
           onClick={() => {
             props.setCurrentEntry(props.entry);
           }}
         >
           <h2>{formatDate(props.entry.date)}</h2>
-          <p>
+          <p className="md:block hidden">
             <strong>{props.entry.adjective}</strong>
           </p>
-          <p>{spliceContent(props.entry.content)}</p>
+          <p className="xl:block hidden">
+            {spliceContent(props.entry.content)}
+          </p>
         </Button>
       </ContextMenuTrigger>
       <ContextMenuContent>

@@ -51,8 +51,9 @@ export default function Journal(): React.ReactElement {
                 "Talk about your day"
               );
               if (entry) {
-                newEntry(entry);
+                const newEntryAdded = newEntry(entry);
                 setEntries(getEntries());
+                setCurrentEntry(newEntryAdded);
               }
             }}
           >
