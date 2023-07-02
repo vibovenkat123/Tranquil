@@ -72,7 +72,9 @@ export default function Breathe(): React.ReactElement {
                         onClick={() => {
                             setStarted(true);
                             reset(setTimeElapsed, setState);
-                            document.body.requestFullscreen();
+                            if (document.body.requestFullscreen) {
+                                document.body.requestFullscreen();
+                            }
                             document.addEventListener("keydown", (e) => {
                                 if (e.key === "Escape") {
                                     setStarted(false);
@@ -116,7 +118,9 @@ export default function Breathe(): React.ReactElement {
                     <Button
                         variant="destructive"
                         onClick={() => {
-                            document.exitFullscreen();
+                            if (document.exitFullscreen) {
+                                document.exitFullscreen();
+                            }
                             setStarted(false);
                             reset(setTimeElapsed, setState);
                         }}

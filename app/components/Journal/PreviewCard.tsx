@@ -26,7 +26,7 @@ export default function PreviewCard(props: Props): React.ReactElement {
       <ContextMenuTrigger>
         <Button
           key={props.entry.date.getTime()}
-          className="w-full mt-5 flex-col gap-2 p-12 border-border border-2"
+          className="w-full mt-5 flex-col gap-2 p-12 border-border border-2 select-none"
           variant="outline"
           onClick={() => {
             props.setCurrentEntry(props.entry);
@@ -84,6 +84,7 @@ export default function PreviewCard(props: Props): React.ReactElement {
             onClick={() => {
               deleteEntry(props.entry.date);
               props.setEntries(getEntries());
+              props.setCurrentEntry(null);
             }}
           >
             <Trash size={16} />
