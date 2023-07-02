@@ -57,7 +57,7 @@ export default function JournalEntry(props: Props): React.ReactElement {
               <FormControl>
                 <Textarea
                   placeholder="Talk about your day"
-                  className="resize-none h-96"
+                  className="resize-none h-96 border-border border-2"
                   {...field}
                 />
               </FormControl>
@@ -81,7 +81,7 @@ export default function JournalEntry(props: Props): React.ReactElement {
                 defaultValue={field.value}
               >
                 <FormControl>
-                  <SelectTrigger>
+                  <SelectTrigger className="border-border border-2">
                     <SelectValue>{field.value}</SelectValue>
                   </SelectTrigger>
                 </FormControl>

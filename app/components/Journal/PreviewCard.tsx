@@ -14,7 +14,7 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 import { Clipboard, Pencil, Share, Trash } from "lucide-react";
-import { toast } from "@/components/ui/use-toast";
+
 type Props = {
   entry: Entry;
   setCurrentEntry: Dispatch<SetStateAction<Entry | null>>;
@@ -26,7 +26,7 @@ export default function PreviewCard(props: Props): React.ReactElement {
       <ContextMenuTrigger>
         <Button
           key={props.entry.date.getTime()}
-          className="w-full mt-5 flex-col gap-2 p-12"
+          className="w-full mt-5 flex-col gap-2 p-12 border-border border-2"
           variant="outline"
           onClick={() => {
             props.setCurrentEntry(props.entry);

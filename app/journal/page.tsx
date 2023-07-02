@@ -30,7 +30,7 @@ export default function Journal(): React.ReactElement {
       <div className="w-full flex h-auto overflow-auto">
         <div className="w-1/5 border-r-2 border-border h-screen p-4">
           <Button
-            className="w-full mt-5 flex-col gap-2 p-8"
+            className="w-full mt-5 flex-col gap-2 p-8 border-border border-2"
             variant="outline"
             onClick={() => {
               setCurrentEntry(null);
@@ -54,7 +54,7 @@ export default function Journal(): React.ReactElement {
               }
             }}
           >
-            add
+            Add
           </Button>
           <JournalEntry entry={currentEntry} setEntries={setEntries} />
         </div>
