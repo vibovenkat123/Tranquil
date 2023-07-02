@@ -36,7 +36,9 @@ export default function Journal(): React.ReactElement {
               setCurrentEntry(null);
             }}
           >
-            <h2><Home /></h2>
+            <h2>
+              <Home />
+            </h2>
           </Button>
           {cards}
         </div>

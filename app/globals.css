@@ -72,12 +72,11 @@
   * {
     @apply border-border;
   }
-  html, body {
+  html,
+  body {
     margin: 0;
   }
   body {
     @apply bg-background text-foreground;
   }
 }
-
-

@@ -88,31 +88,31 @@ export default function JournalEntry(props: Props): React.ReactElement {
                 <SelectContent>
                   <SelectItem value={ADJECTIVE.VERY_PLEASANT}>
                     <div className="flex w-full gap-3 items-center">
-                      <Laugh size={16}/>
+                      <Laugh size={16} />
                       {ADJECTIVE.VERY_PLEASANT}
                     </div>
                   </SelectItem>
                   <SelectItem value={ADJECTIVE.PLEASANT}>
                     <div className="flex w-full gap-3 items-center">
-                      <Smile size={16}/>
+                      <Smile size={16} />
                       {ADJECTIVE.PLEASANT}
                     </div>
                   </SelectItem>
                   <SelectItem value={ADJECTIVE.NEUTRAL}>
                     <div className="flex w-full gap-3 items-center">
-                      <Meh size={16}/>
+                      <Meh size={16} />
                       {ADJECTIVE.NEUTRAL}
                     </div>
                   </SelectItem>
                   <SelectItem value={ADJECTIVE.UNPLEASANT}>
                     <div className="flex w-full gap-3 items-center">
-                      <Frown size={16}/>
+                      <Frown size={16} />
                       {ADJECTIVE.UNPLEASANT}
                     </div>
                   </SelectItem>
                   <SelectItem value={ADJECTIVE.VERY_UNPLEASANT}>
                     <div className="flex w-full gap-3 items-center">
-                      <Angry size={16}/>
+                      <Angry size={16} />
                       {ADJECTIVE.VERY_UNPLEASANT}
                     </div>
                   </SelectItem>
