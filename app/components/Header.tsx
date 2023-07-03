@@ -21,6 +21,7 @@ export default function Header(): React.ReactElement {
           <Link href="/journal">Journal</Link>
           <Link href="/breathe">Breathe</Link>
           <Link href="/export">Export / Import</Link>
+          <Link href="/todos">Todos</Link>
         </nav>
         <nav className="flex items-center space-x-10">
           <ModeToggle mobile={false} />
@@ -54,6 +55,11 @@ function HamburgerMenu(): React.ReactElement {
           <DropdownMenuItem>
             <Link href="/export" className="w-full">
               Export / Import
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/todos" className="w-full">
+                Todos
             </Link>
           </DropdownMenuItem>
 
