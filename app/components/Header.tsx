@@ -61,13 +61,13 @@ function HamburgerMenu(): React.ReactElement {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/export" className="w-full">
-              Export / Import
+            <Link href="/todos" className="w-full">
+              Todos
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/todos" className="w-full">
-              Todos
+            <Link href="/export" className="w-full">
+              Export / Import
             </Link>
           </DropdownMenuItem>
 

@@ -1,10 +1,9 @@
 # Tranquil
 
-A wellness app that allows you to take notes (coming soon), journal, meditate, 
+A wellness app that allows you to take notes (coming soon), journal, meditate,
 and add daily tasks.
 
 [Roadmap](https://vaibhavvenkatprojects.notion.site/Tranquil-eecb339353ca4e74ab34679814e9f8d1?pvs=4)
-
 
 # Why?
 
@@ -12,17 +11,14 @@ The reason I built this was because I was searching for new tools, and most of
 them were too complex and too much for my needs. Tranquil is really simple and
 fits all my needs.
 
-
-
 # What I used
 
 This project is almost all frontend
 
-* Figma
-* Next.js
-* Typescript
-* Shadcn UI
-
+- Figma
+- Next.js
+- Typescript
+- Shadcn UI
 
 # Why is there no database?
 

@@ -68,8 +68,8 @@ export default function Todos(): React.ReactElement {
           <TableBody>{todoItems}</TableBody>
         </Table>
         <div className="mt-5 md:w-1/2 w-full lg:w-1/4">
-        <TodoForm setTodos={setTodos} />
-        </div>  
+          <TodoForm setTodos={setTodos} />
+        </div>
       </div>
     </main>
   );
@@ -104,7 +104,11 @@ function TodoForm(props: {
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Example Todo" {...field}  className="border-border"/>
+                  <Input
+                    placeholder="Example Todo"
+                    {...field}
+                    className="border-border"
+                  />
                 </FormControl>
                 <FormDescription>The name of the todo.</FormDescription>
                 <FormMessage />
