@@ -25,9 +25,9 @@ export default function Journal(): React.ReactElement {
     );
   });
   return (
-    <main className="flex flex-col overflow-hidden w-full fixed">
+    <main className="flex flex-col w-full">
       <Header />
-      <div className="w-full flex h-auto overflow-auto">
+      <div className="w-full flex h-auto">
         <div className="w-1/4 md:w-1/5 border-r-2 border-border h-screen p-4">
           <Button
             className="w-full mt-5 flex-col gap-2 p-8 border-border border-2"
