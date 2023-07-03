@@ -5,11 +5,10 @@ export function copyMobile(text: string): void {
     e.style.cssText = "position:fixed;top:-999px";
     e.textContent = text;
     document.body.append(e);
-    // @ts-ignore
-    getSelection().setBaseAndExtent(
-      e.firstChild,
+    getSelection()!.setBaseAndExtent(
+      e.firstChild!,
       0,
-      e.firstChild,
+      e.firstChild!,
       e.textContent.length
     );
     if (!document.execCommand("copy")) {
