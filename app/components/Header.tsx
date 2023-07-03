@@ -18,10 +18,18 @@ export default function Header(): React.ReactElement {
           <h1 className="font-semibold text-xl">Tranquil</h1>
         </Link>
         <nav className="hidden md:flex items-center space-x-10">
-          <Link href="/journal">Journal</Link>
-          <Link href="/breathe">Breathe</Link>
-          <Link href="/export">Export / Import</Link>
-          <Link href="/todos">Todos</Link>
+          <Link href="/journal">
+            <Button variant="ghost">Journal</Button>
+          </Link>
+          <Link href="/breathe">
+            <Button variant="ghost">Breathe</Button>
+          </Link>
+          <Link href="/todos">
+            <Button variant="ghost">Todos</Button>
+          </Link>
+          <Link href="/export">
+            <Button variant="ghost">Export / Import</Button>
+          </Link>
         </nav>
         <nav className="flex items-center space-x-10">
           <ModeToggle mobile={false} />
