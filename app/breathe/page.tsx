@@ -8,7 +8,6 @@ import Link from "next/link";
 import { BREATHE_STATE } from "../lib/breathe/types";
 import { nextBreathingState, reset } from "../lib/breathe/helpers";
 
-
 export default function Breathe(): React.ReactElement {
   const [state, setState] = useState<BREATHE_STATE>(BREATHE_STATE.INHALE);
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
@@ -121,4 +120,3 @@ export default function Breathe(): React.ReactElement {
     </main>
   );
 }
-

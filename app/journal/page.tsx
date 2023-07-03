@@ -13,14 +13,21 @@ export default function Journal(): React.ReactElement {
   const [currentEntry, setCurrentEntry] = useState<Entry | null>(null);
   useEffect(() => {
     setEntries(getEntries());
-    if (getEntries().length > 0) {
-      if ((getEntries()[0].date.toDateString = new Date().toDateString)) {
-        const entry = validateEntry(ADJECTIVE.NEUTRAL, "Talk about your day");
-        if (entry) {
-          const newEntryAdded = newEntry(entry);
-          setEntries(getEntries());
-          setCurrentEntry(newEntryAdded);
-        }
+    if (getEntries().length == 0) {
+      const entry = validateEntry(ADJECTIVE.NEUTRAL, "Talk about your day");
+      if (entry) {
+        const newEntryAdded = newEntry(entry);
+        setEntries(getEntries());
+        setCurrentEntry(newEntryAdded);
+      }
+      return;
+    }
+    if (!(getEntries()[0].date.toDateString = new Date().toDateString)) {
+      const entry = validateEntry(ADJECTIVE.NEUTRAL, "Talk about your day");
+      if (entry) {
+        const newEntryAdded = newEntry(entry);
+        setEntries(getEntries());
+        setCurrentEntry(newEntryAdded);
       }
     }
   }, []);

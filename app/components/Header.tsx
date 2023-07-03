@@ -59,7 +59,7 @@ function HamburgerMenu(): React.ReactElement {
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Link href="/todos" className="w-full">
-                Todos
+              Todos
             </Link>
           </DropdownMenuItem>
 
