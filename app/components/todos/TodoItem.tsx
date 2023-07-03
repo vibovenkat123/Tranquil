@@ -51,12 +51,12 @@ export default function TodoItem(props: Props): React.ReactElement {
         />
       </TableCell>
       <TableCell className="font-medium">{props.todo.name}</TableCell>
-      <TableCell className="text-right">
+      <TableCell className="text-right ">
         <AlertDialog>
           <AlertDialogTrigger>
             <Trash />
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className="w-4/5">
             <AlertDialogHeader>
               <AlertDialogTitle>
                 Are you sure you want to delete your todo

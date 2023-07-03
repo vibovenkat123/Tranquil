@@ -53,10 +53,10 @@ export default function Todos(): React.ReactElement {
   return (
     <main className="w-full h-screen">
       <Header />
-      <div className="w-full mt-12 flex flex-col items-start px-20">
+      <div className="w-full mt-12 flex flex-col items-start px-5 md:px-10 lg:px-14 xl:px-24">
         <h1 className="font-bold text-5xl mb-5">Todos</h1>
         <p> Here are your daily todos! </p>
-        <Table className="mt-5 w-2/3">
+        <Table className="mt-5 w-full md:w-4/5 lg:w-2/3">
           <TableCaption>Daily todos</TableCaption>
           <TableHeader>
             <TableRow>
@@ -67,7 +67,9 @@ export default function Todos(): React.ReactElement {
           </TableHeader>
           <TableBody>{todoItems}</TableBody>
         </Table>
+        <div className="mt-5 md:w-1/2 w-full lg:w-1/4">
         <TodoForm setTodos={setTodos} />
+        </div>  
       </div>
     </main>
   );
@@ -102,7 +104,7 @@ function TodoForm(props: {
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Example Todo" {...field} />
+                  <Input placeholder="Example Todo" {...field}  className="border-border"/>
                 </FormControl>
                 <FormDescription>The name of the todo.</FormDescription>
                 <FormMessage />
