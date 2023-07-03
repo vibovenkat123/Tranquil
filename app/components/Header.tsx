@@ -20,6 +20,7 @@ export default function Header(): React.ReactElement {
         <nav className="hidden md:flex items-center space-x-10">
           <Link href="/journal">Journal</Link>
           <Link href="/breathe">Breathe</Link>
+          <Link href="/export">Export</Link>
         </nav>
         <nav className="flex items-center space-x-10">
           <ModeToggle mobile={false} />
@@ -50,6 +51,12 @@ function HamburgerMenu(): React.ReactElement {
               Breathe
             </Link>
           </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/export" className="w-full">
+              Export 
+            </Link>
+          </DropdownMenuItem>
+
           <ModeToggle mobile={true} />
         </DropdownMenuContent>
       </DropdownMenu>
