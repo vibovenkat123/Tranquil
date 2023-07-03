@@ -1,7 +1,6 @@
 # Tranquil
 
-A wellness app that allows you to take notes (coming soon), journal, meditate,
-and add daily tasks.
+A wellness app that allows you to journal, meditate, and add daily tasks.
 
 [Roadmap](https://vaibhavvenkatprojects.notion.site/Tranquil-eecb339353ca4e74ab34679814e9f8d1?pvs=4)
 
