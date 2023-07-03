@@ -87,20 +87,6 @@ export default function PreviewCard(props: Props): React.ReactElement {
             Export
           </Button>
         </ContextMenuItem>
-        <ContextMenuItem>
-          <Button
-            variant={"destructive"}
-            className="flex gap-3 items-center"
-            onClick={() => {
-              deleteEntry(props.entry.date);
-              props.setEntries(getEntries());
-              props.setCurrentEntry(null);
-            }}
-          >
-            <Trash size={16} />
-            Delete
-          </Button>
-        </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
   );
