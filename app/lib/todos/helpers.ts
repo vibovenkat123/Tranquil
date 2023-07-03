@@ -3,7 +3,7 @@ import { TodoSchema, Todo, TodoInput } from "./types";
 export function addTodo(todo: TodoInput, todos: Todo[]): void {
   let id = 0;
   if (todos.length > 0) {
-    id = todos[0].id + 1;
+    id = todos[todos.length - 1].id + 1;
   }
   const newTodo: Todo = {
     ...todo,
