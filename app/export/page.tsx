@@ -4,6 +4,7 @@ import Header from "../components/Header"
 import { Clipboard, Share } from "lucide-react"
 import { getEntries } from "../lib/journal/helpers";
 import { useToast } from "@/components/ui/use-toast";
+import { copyMobile } from "../lib/helpers";
 
 export default function Export(): React.ReactElement {
     const { toast } = useToast();
@@ -14,7 +15,12 @@ export default function Export(): React.ReactElement {
                 <h1 className="text-4xl font-bold">Export</h1>
                 <p className="text-xl mt-5">Export your data</p>
                 <Button className="mt-5" onClick={() => {
-                    navigator.clipboard.writeText(JSON.stringify(getEntries()))
+                    const text = JSON.stringify(getEntries())
+                    if (!navigator.clipboard) {
+                        copyMobile(text)
+                    } else {
+                        navigator.clipboard.writeText(JSON.stringify(getEntries()))
+                    }
                     toast({
                         title: "Copied to clipboard",
                     })
@@ -32,7 +38,7 @@ export default function Export(): React.ReactElement {
                         })
                     })
                 }}>
-                <Clipboard />
+                    <Clipboard />
                 </Button>
             </div>
         </>
