@@ -1,12 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
-import { Button } from "@/components/ui/button";
 import JournalEntry from "@/app/components/Journal/Entry";
 import { ADJECTIVE, Entry } from "../lib/journal/types";
 import { getEntries, validateEntry, newEntry } from "../lib/journal/helpers";
 import PreviewCard from "../components/Journal/PreviewCard";
-import { Home } from "lucide-react";
 
 export default function Journal(): React.ReactElement {
   const [entries, setEntries] = useState<Entry[]>([]);
@@ -22,12 +20,12 @@ export default function Journal(): React.ReactElement {
       }
       return;
     }
-    if (!(getEntries()[0].date.toDateString = new Date().toDateString)) {
+    if (!(getEntries()[0].date.toDateString() == new Date().toDateString())) {
       const entry = validateEntry(ADJECTIVE.NEUTRAL, "Talk about your day");
       if (entry) {
-        const newEntryAdded = newEntry(entry);
+        newEntry(entry);
         setEntries(getEntries());
-        setCurrentEntry(newEntryAdded);
+        setCurrentEntry(getEntries().at(-1) ?? null);
       }
     }
   }, []);
